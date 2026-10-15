@@ -1,0 +1,149 @@
+"""
+NumPy House Price Regression
+
+Assembled from your step-by-step solutions.
+"""
+
+import numpy as np
+
+# Step 1 - impute_nan_with_mean
+def impute_nan_with_mean(X):
+    """Replace every NaN in X with that column's nan-aware mean (all-NaN cols -> 0).
+
+    Args:
+        X: (N, F) array-like of floats, may contain NaN.
+
+    Returns:
+        (N, F) float ndarray with no NaNs.
+    """
+    # TODO: Replace every NaN with that column's nan-aware mean...
+    clean = np.copy(X)
+    means = np.nanmean(clean, axis = 0)
+    means [np.isnan(means)] = 0 
+    missing = np.isnan(clean)  
+    for j in range(clean.shape[1]):
+        clean[missing [:, j], j] = means [j]
+    return clean 
+
+
+    pass
+
+# Step 2 - compute_iqr_bounds
+def compute_iqr_bounds(X, k=1.5):
+    # TODO: Compute per-column lower/upper clip bounds using the IQR rule.
+    q1 = np.percentile(X,25, axis = 0)
+    q3 = np.percentile(X, 75, axis = 0)
+    iqr = q3 - q1
+    lower = q1 - k * iqr
+    upper = q3 + k * iqr
+    return lower, upper
+    
+    
+    pass
+
+# Step 3 - clip_columns
+def clip_columns(X, lower, upper):
+    # TODO: Clip every entry of a feature matrix to per-column lower/upper bounds.
+    clean = np.copy(X)
+    for j in range (clean.shape[1]):
+        clean[:, j] = np.clip(clean[:, j], lower[j], upper[j])
+    return clean 
+    
+    pass
+
+# Step 4 - make_ratio_feature
+def make_ratio_feature(numerator, denominator, eps=1e-8):
+    # TODO: Form a derived ratio feature from two 1-D arrays with safe division.
+    
+    feature = numerator / (denominator + eps)
+    return feature 
+    
+    
+    pass
+
+# Step 5 - append_column
+def append_column(X, col):
+# TODO: Horizontally append one 1-D feature column onto a design matrix.
+
+    X_new = np.append(X,  col.reshape(-1,1), axis = 1) 
+    return X_new
+
+# Step 6 - one_hot_encode
+import numpy as np
+
+def one_hot_encode(labels):
+    # Find the unique categories
+    categories = np.unique(labels)
+
+    # Number of rows and columns
+    N = len(labels)
+    C = len(categories)
+
+    # Create an empty matrix of zeros
+    encoded = np.zeros((N, C))
+
+    # Go through each label
+    for i, label in enumerate(labels):
+
+        # Find which column belongs to this label
+        j = np.where(categories == label)[0][0]
+
+        # Put a 1 in that position
+        encoded[i, j] = 1
+
+    return encoded
+
+# Step 7 - fit_standardizer (not yet solved)
+# TODO: implement
+
+# Step 8 - apply_standardizer (not yet solved)
+# TODO: implement
+
+# Step 9 - add_bias_column (not yet solved)
+# TODO: implement
+
+# Step 10 - make_shuffled_indices (not yet solved)
+# TODO: implement
+
+# Step 11 - partition_indices (not yet solved)
+# TODO: implement
+
+# Step 12 - subset_xy (not yet solved)
+# TODO: implement
+
+# Step 13 - ols_fit (not yet solved)
+# TODO: implement
+
+# Step 14 - ols_predict (not yet solved)
+# TODO: implement
+
+# Step 15 - mean_absolute_error (not yet solved)
+# TODO: implement
+
+# Step 16 - root_mean_squared_error (not yet solved)
+# TODO: implement
+
+# Step 17 - r_squared (not yet solved)
+# TODO: implement
+
+# Step 18 - residual_summary (not yet solved)
+# TODO: implement
+
+# Step 19 - prepare_cleaned_features (not yet solved)
+# TODO: implement
+
+# Step 20 - assemble_feature_matrix (not yet solved)
+# TODO: implement
+
+# Step 21 - make_train_val_test (not yet solved)
+# TODO: implement
+
+# Step 22 - standardize_and_add_bias (not yet solved)
+# TODO: implement
+
+# Step 23 - evaluate_predictions (not yet solved)
+# TODO: implement
+
+# Step 24 - house_price_pipeline (not yet solved)
+# TODO: implement
+
