@@ -218,8 +218,23 @@ def root_mean_squared_error(y_true, y_pred):
     
     pass
 
-# Step 17 - r_squared (not yet solved)
-# TODO: implement
+# Step 17 - r_squared
+def r_squared(y_true, y_pred):
+    residual = np.sum((y_true - y_pred) ** 2)
+
+    y_bar = np.mean(y_true)
+
+    total = np.sum((y_true - y_bar) ** 2)
+
+    if total == 0:
+        return 0.0
+    else:
+        return 1.0 - residual / total
+
+    
+   
+   
+    pass
 
 # Step 18 - residual_summary (not yet solved)
 # TODO: implement
